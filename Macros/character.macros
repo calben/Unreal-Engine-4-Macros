@@ -1,0 +1,20 @@
+/*
+*  For Use in Character and Pawn Classes
+*/
+
+// IN HEADER
+
+
+#define ADDBUTTONCONTROL(X) void On##X##Pressed(); void On##X##Released();
+
+
+
+// IN DEFINITION
+
+#define BIND_AXIS(X,Y) \
+  InputComponent->BindAxis(#X, this, &##Y##::Add##X);
+
+#define BIND_BUTTON(X, Y)  \
+  InputComponent->BindAction(#X, IE_Pressed, this, &##Y##::On##X##Pressed); \
+  InputComponent->BindAction(#X, IE_Released, this, &##Y##::On##X##Released);
+ 
